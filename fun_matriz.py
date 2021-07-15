@@ -1,5 +1,3 @@
-
-
 class Grafo_Matriz:
     def __init__(self, arquivo):
         (self.num_vertices, self.num_arestas) = self.tamanhos(arquivo)
