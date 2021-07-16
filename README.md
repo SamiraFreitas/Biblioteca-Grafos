@@ -5,6 +5,7 @@
 - [📝 Sobre](#-sobre)
 - [👀 Documentação do Projeto](#-documentação-do-projeto)
 - [👾 Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [💞 Contribuição](#-contribuição)
 - [💻 Como baixar o projeto](#-como-baixar-o-projeto)
 
 
@@ -30,6 +31,10 @@ Esse projeto possui uma documentação que pode ser encontrada : [Overleaf](http
 
 ## 👾 Tecnologias Utilizadas 
 - Python 
+
+## 💞 Contribuição
+
+ O projeto é de livre acesso e uso, então fique à-vontade para realizar um Fork e utilizar do mesmo, como também sugerir dicas e melhorias.
   
 ## 💻 Como baixar o projeto 
 
