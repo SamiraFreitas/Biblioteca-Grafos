@@ -13,7 +13,7 @@ Este repositório é referente ao projeto de desenvolvimento para a matéria Gra
 
 A biblioteca deve ler um grafo especificado através de um arquivo de texto no formato Dimacs, lidaremos com grafos não-orientados ponderados para realizar as seguintes informações : 
 - Representar os grafos  por lista de adjacências 
--Representar os grafos  por matriz de adjacências
+- Representar os grafos  por matriz de adjacências
 - Exibir o vértice de maior e menor grau
 - O grau médio dos vértices 
 - A distribuição empírica do grau dos vértices.
