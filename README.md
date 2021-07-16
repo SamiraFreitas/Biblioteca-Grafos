@@ -26,7 +26,7 @@ A biblioteca deve ler um grafo especificado através de um arquivo de texto no f
 
 ## 👀 Documentação do Projeto
 
-Esse projeto possui uma documentação que pode ser encontrada : [Overleaf](https://www.overleaf.com/read/smrfvcfcffwz)
+Esse projeto possui uma documentação que pode ser encontrada : 
 
 
 ## 👾 Tecnologias Utilizadas 
