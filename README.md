@@ -17,10 +17,12 @@ A biblioteca deve ler um grafo especificado através de um arquivo de texto no f
 - Exibir o vértice de maior e menor grau
 - O grau médio dos vértices 
 - A distribuição empírica do grau dos vértices.
-- Escrever a saída em um arquivo, tendo em cada linhao vértice e seu nível na  árvore de busca.
+- Busca em Grafos: Largura e Profundidade 
+- Escrever a saída em um arquivo, tendo em cada linha o vértice e seu nível na  árvore de busca.
 - Componentes conexas do grafo
--  Grafo de Colaborações em Pesquisa
--  Grafo de Conexões da Web
+- Grafo de Colaborações em Pesquisa
+- Grafo de Conexões da Web
+
 ## 👀 Documentação do Projeto
 
 Esse projeto possui uma documentação que pode ser encontrada : [Overleaf](https://www.overleaf.com/read/smrfvcfcffwz)
