@@ -1,4 +1,3 @@
-import os
 import fun_matriz
 import fun_lista
 
