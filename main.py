@@ -4,6 +4,7 @@ import fun_matriz
 import fun_lista
 
 ch = False
+entrada = ''
 while not ch:
     entrada = input('\n-Informe o nome do arquivo: ')
     ch = os.path.exists(entrada)
