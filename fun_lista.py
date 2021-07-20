@@ -1,18 +1,23 @@
-class Grafo_Lista:
+
+
+class GrafoLista:
+    # Classe com todos os atributos do grafo na representação lista de adjacencias
     def __init__(self, arquivo):
-        (self.num_vertices, self.num_arestas) = self.tamanhos(arquivo)
-        self.grafo = self.converte_lista(arquivo)
+        (self.num_vertices, self.num_arestas, self.grafo) = self.converte_lista(arquivo)
         (self.maior_grau, self.menor_grau, self.media_grau, self.frequencia) = self.definir_graus()
         self.busca_largura_lista(0)
         self.busca_profundidade_lista(0)
         (self.componentes_conexas, self.num_conexa) = self.conexidade()
 
     def converte_lista(self, arquivo):
-        "Converte o grafo do arquivo .dat em uma lista de adjacencias"
+        # Converte o grafo do arquivo .dat em uma lista de adjacencias"
+        linha = arquivo.readline()
+        conteudo = linha.split(' ')
+        num_vertices = int(conteudo[0])
+        num_arestas = int(conteudo[1])
         lista = []
-        for i in range(self.num_vertices):
+        for i in range(num_vertices):
             lista.append([])
-
         for linha in arquivo:
             conteudo = linha.split(' ')
             v1 = int(conteudo[0])
@@ -20,24 +25,18 @@ class Grafo_Lista:
             a = int(conteudo[2])
             lista[v1].append((v2, a))
             lista[v2].append((v1, a))
-        return lista
-
-    def tamanhos(self, arquivo):
-        "retorna o numero de vertices e arestas no grafo"
-        for linha in arquivo:
-            conteudo = linha.split(' ')
-            return (int(conteudo[0]), int(conteudo[1]))
+        return (num_vertices, num_arestas, lista)
 
     def definir_graus(self):
-        "calcula o vertice com maior grau, o com menor grau, o grau medio do grafo"
+        # retorna o vertice com maior grau, o com menor grau, o grau medio do grafo e a ...
+        # frequencia relativa de cada grau
         maior = [0, 0]
         menor = [0, 10000]
         soma = 0
-        distribuicao = [0 for k in range(self.num_vertices)]
+        distribuicao = [0 for _ in range(self.num_vertices)]
         frequencia = []
-
+        arquivo4 = open("distribuicao.txt", 'w')
         for i in range(self.num_vertices):
-            aux = 0
             distribuicao[len(self.grafo[i])] = distribuicao[len(self.grafo[i])] + 1
             if maior[1] < len(self.grafo[i]):
                 maior[0] = i
@@ -49,20 +48,22 @@ class Grafo_Lista:
         for i in range(self.num_vertices):
             if distribuicao[i] != 0:
                 frequencia.append((i, distribuicao[i] / self.num_vertices))
-        media = float(soma) / float(5)
+                st = str(i) + ':' + str(100 * distribuicao[i] / self.num_vertices) + '\n'
+                arquivo4.write(st)
+        arquivo4.close()
+        media = float(soma) / float(self.num_vertices)
         return (maior, menor, media, frequencia)
 
     def busca_largura_lista(self, s):
-        "Escreve em um arquivo .txt saida o nivel de cada vertice na arvore, ..."
-        "... considerando o caminho percorrido na busca em largura."
+        # Escreve em um arquivo .txt o nivel de cada vertice na arvore, ...
+        # considerando o caminho percorrido na busca em largura.
         arquivo2 = open('nivel_largura.txt', 'w')
-        desc = [0 for i in range(self.num_vertices)]
+        desc = [0 for _ in range(self.num_vertices)]
         Q = [s]
         R = [s]
         desc[s] = 1
-        ordem = [-1 for i in range(self.num_vertices)]
+        ordem = [-1 for _ in range(self.num_vertices)]
         ordem[s] = 0
-
         while len(Q) != 0:
             u = Q.pop(0)
             for (v, a) in self.grafo[u]:
@@ -79,14 +80,14 @@ class Grafo_Lista:
         arquivo2.close()
 
     def busca_profundidade_lista(self, s):
-        "Escreve em um arquivo .txt saida o nivel de cada vertice na arvore, ..."
-        "considerando o caminho percorrido na busca em profundidade"
+        # Escreve em um arquivo .txt o nivel de cada vertice na arvore, ...
+        # considerando o caminho percorrido na busca em profundidade
         arquivo3 = open('nivel_profundidade.txt', 'w')
-        desc = [0 for i in range(self.num_vertices)]
+        desc = [0 for _ in range(self.num_vertices)]
         S = [s]
         R = [s]
         desc[s] = 1
-        ordem = [-1 for i in range(self.num_vertices)]
+        ordem = [-1 for _ in range(self.num_vertices)]
         ordem[s] = 0
         while len(S) != 0:
             u = S[-1]
@@ -109,8 +110,8 @@ class Grafo_Lista:
         arquivo3.close()
 
     def busca_largura(self, comp, s):
-        "busca em largura de um grafo G"
-        desc = [0 for i in range(self.num_vertices)]
+        # busca comum em largura de um grafo G - lista
+        desc = [0 for _ in range(self.num_vertices)]
         Q = [s]
         R = [s]
         desc[s] = 1
@@ -126,8 +127,8 @@ class Grafo_Lista:
         return R
 
     def conexidade(self):
-        "retorna o numero de componentes conexas no grafo, e o numero de vertices nessas componentes"
-        componente = [1 for i in range(self.num_vertices)]
+        # retorna o numero de componentes conexas no grafo, e o numero de vertices nessas componentes
+        componente = [1 for _ in range(self.num_vertices)]
         t = []
         k = 0
         for i in range(self.num_vertices):
@@ -141,9 +142,3 @@ class Grafo_Lista:
                     bit = bit + 1
                 if bit == self.num_vertices:
                     return (k, t)
-
-
-
-
-
-
