@@ -1,31 +1,31 @@
-
+import timeit
 
 class GrafoLista:
     # Classe com todos os atributos do grafo na representação lista de adjacencias
     def __init__(self, arquivo):
-        (self.num_vertices, self.num_arestas, self.grafo) = self.converte_lista(arquivo)
+        (self.num_vertices, self.num_arestas, self.grafo, self.tempo_cria_representacao) = self.converte_lista(arquivo)
         (self.maior_grau, self.menor_grau, self.media_grau, self.frequencia) = self.definir_graus()
-        self.busca_largura_lista(0)
-        self.busca_profundidade_lista(0)
+        self.tempo_largura = self.busca_largura_lista(1)
+        self.tempo_profundidade = self.busca_profundidade_lista(1)
         (self.componentes_conexas, self.num_conexa) = self.conexidade()
 
     def converte_lista(self, arquivo):
         # Converte o grafo do arquivo .dat em uma lista de adjacencias"
+        inicio2 = timeit.default_timer()
         linha = arquivo.readline()
         conteudo = linha.split(' ')
         num_vertices = int(conteudo[0])
         num_arestas = int(conteudo[1])
-        lista = []
-        for i in range(num_vertices):
-            lista.append([])
+        grafo = [[] for _ in range(num_vertices)]
         for linha in arquivo:
             conteudo = linha.split(' ')
             v1 = int(conteudo[0])
             v2 = int(conteudo[1])
             a = int(conteudo[2])
-            lista[v1].append((v2, a))
-            lista[v2].append((v1, a))
-        return (num_vertices, num_arestas, lista)
+            grafo[v1].append((v2, a))
+            grafo[v2].append((v1, a))
+        fim2 = timeit.default_timer()
+        return (num_vertices, num_arestas, grafo, fim2 - inicio2)
 
     def definir_graus(self):
         # retorna o vertice com maior grau, o com menor grau, o grau medio do grafo e a ...
@@ -35,7 +35,7 @@ class GrafoLista:
         soma = 0
         distribuicao = [0 for _ in range(self.num_vertices)]
         frequencia = []
-        arquivo4 = open("distribuicao.txt", 'w')
+        arquivo4 = open("frequencia_relativa.txt", 'w')
         for i in range(self.num_vertices):
             distribuicao[len(self.grafo[i])] = distribuicao[len(self.grafo[i])] + 1
             if maior[1] < len(self.grafo[i]):
@@ -57,6 +57,7 @@ class GrafoLista:
     def busca_largura_lista(self, s):
         # Escreve em um arquivo .txt o nivel de cada vertice na arvore, ...
         # considerando o caminho percorrido na busca em largura.
+        inicio2 = timeit.default_timer()
         arquivo2 = open('nivel_largura.txt', 'w')
         desc = [0 for _ in range(self.num_vertices)]
         Q = [s]
@@ -78,10 +79,13 @@ class GrafoLista:
                 saidas = str(i) + ':' + str(ordem[i]) + '\n'
                 arquivo2.write(saidas)
         arquivo2.close()
+        fim2 = timeit.default_timer()
+        return (fim2 - inicio2)
 
     def busca_profundidade_lista(self, s):
         # Escreve em um arquivo .txt o nivel de cada vertice na arvore, ...
         # considerando o caminho percorrido na busca em profundidade
+        inicio2 = timeit.default_timer()
         arquivo3 = open('nivel_profundidade.txt', 'w')
         desc = [0 for _ in range(self.num_vertices)]
         S = [s]
@@ -108,6 +112,8 @@ class GrafoLista:
                 saidas = str(i) + ':' + str(ordem[i]) + '\n'
                 arquivo3.write(saidas)
         arquivo3.close()
+        fim2 = timeit.default_timer()
+        return (fim2 - inicio2)
 
     def busca_largura(self, comp, s):
         # busca comum em largura de um grafo G - lista

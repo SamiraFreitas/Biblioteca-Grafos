@@ -7,7 +7,7 @@ ch = False
 entrada = ''
 while not ch:
     entrada = input('\n-Informe o nome do arquivo: ')
-    ch = os.path.exists(entrada)
+    ch = os.path.isfile(entrada)
     if not ch:
         print("\nInfelizmente não foi possivel encontrar esse arquivo, tente novamente com um nome valido")
         espera = input('\t...aperte enter para continuar...')
@@ -49,5 +49,8 @@ for (grau, freq) in saida.frequencia:
 print('-Componentes conexas:', saida.componentes_conexas)
 for item in saida.num_conexa:
     print('\t->', item, 'vertices')
-print('-Tempo de execução:',  fim - inicio)
+print('-Tempo de execução de todas as funcionalidades :',  fim - inicio)
+print('-Tempo de execução na criação da representação :',  saida.tempo_cria_representacao)
+print('-Tempo de execução de busca largura :',  saida.tempo_largura)
+print('-Tempo de execução de busca profundidade :',  saida.tempo_profundidade)
 fim = input()

@@ -1,30 +1,31 @@
-
+import timeit
 
 class GrafoMatriz:
+    # Classe com todos os atributos e metodos do grafo na representação matriz de adjacencias
     def __init__(self, arquivo):
-        # Classe com todos os atributos e metodos do grafo na representação matriz de adjacencias
-        (self.num_vertices, self.num_arestas, self.grafo) = self.converte_matriz(arquivo)
+        (self.num_vertices, self.num_arestas, self.grafo, self.tempo_cria_representacao) = self.converte_matriz(arquivo)
         (self.maior_grau, self.menor_grau, self.media_grau, self.frequencia) = self.definir_graus()
-        self.busca_largura_matriz(0)
-        self.busca_profundidade_matriz(0)
+        self.tempo_largura = self.busca_largura_matriz(1)
+        self.tempo_profundidade = self.busca_profundidade_matriz(1)
         (self.componentes_conexas, self.num_conexa) = self.conexidade()
 
     def converte_matriz(self, arquivo):
         # Converte o grafo do arquivo .dat em uma matriz de adjacencias
+        inicio2 = timeit.default_timer()
         linha = arquivo.readline()
         conteudo = linha.split(' ')
         num_vertices = int(conteudo[0])
         num_arestas = int(conteudo[1])
-        matriz = [[0 for _ in range(num_vertices)] for _ in range(num_vertices)]
-
+        grafo = [[0 for _ in range(num_vertices)] for _ in range(num_vertices)]
         for linha in arquivo:
             conteudo = linha.split(' ')
             v1 = int(conteudo[0])
             v2 = int(conteudo[1])
             a = int(conteudo[2])
-            matriz[v1][v2] = a
-            matriz[v2][v1] = a
-        return (num_vertices, num_arestas, matriz)
+            grafo[v1][v2] = a
+            grafo[v2][v1] = a
+        fim2 = timeit.default_timer()
+        return (num_vertices, num_arestas, grafo, fim2 - inicio2)
 
     def definir_graus(self):
         # retorna o vertice com maior grau, o com menor grau, o grau medio do grafo e a ...
@@ -34,7 +35,7 @@ class GrafoMatriz:
         soma = 0
         distribuicao = [0 for _ in range(self.num_vertices)]
         frequencia = []
-        arquivo4 = open("distribuicao.txt", 'w')
+        arquivo4 = open("frequencia_relativa.txt", 'w')
         for i in range(self.num_vertices):
             aux = 0
             for j in range(self.num_vertices):
@@ -50,7 +51,7 @@ class GrafoMatriz:
             soma = soma + aux
         for i in range(self.num_vertices):
             if distribuicao[i] != 0:
-                frequencia.append((i, distribuicao[i]))
+                frequencia.append((i, distribuicao[i] / self.num_vertices))
                 st = str(i) + ':' + str(100 * distribuicao[i] / self.num_vertices) + '\n'
                 arquivo4.write(st)
         arquivo4.close()
@@ -60,6 +61,7 @@ class GrafoMatriz:
     def busca_largura_matriz(self, s):
         # Escreve em um arquivo .txt saida o nivel de cada vertice na arvore, ...
         # considerando o caminho percorrido na busca em largura.
+        inicio2 = timeit.default_timer()
         arquivo2 = open('nivel_largura.txt', 'w')
         desc = [0 for _ in range(len(self.grafo))]
         Q = [s]
@@ -81,10 +83,13 @@ class GrafoMatriz:
                 saidas = str(i) + ':' + str(ordem[i]) + '\n'
                 arquivo2.write(saidas)
         arquivo2.close()
+        fim2 = timeit.default_timer()
+        return (fim2 - inicio2)
 
     def busca_profundidade_matriz(self, s):
         # Escreve em um arquivo .txt saida o nivel de cada vertice na arvore, ...
         # considerando o caminho percorrido na busca em profundidade
+        inicio2 = timeit.default_timer()
         arquivo3 = open('nivel_profundidade.txt', 'w')
         desc = [0 for _ in range(len(self.grafo))]
         S = [s]
@@ -111,6 +116,8 @@ class GrafoMatriz:
                 saidas = str(i) + ':' + str(ordem[i]) + '\n'
                 arquivo3.write(saidas)
         arquivo3.close()
+        fim2 = timeit.default_timer()
+        return (fim2 - inicio2)
 
     def busca_largura(self, comp, s):
         # busca comum em largura de um grafo G - matriz
