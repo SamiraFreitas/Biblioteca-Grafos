@@ -1,6 +1,4 @@
 
-![Desktop - 1 (3)](https://user-images.githubusercontent.com/73719899/126903153-26506aa7-4f0a-4773-93c2-065ab6986648.png)
-
 ## 📜 Índice
 - [📜 Índice](#-índice)
 - [📝 Sobre](#-sobre)
