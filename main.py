@@ -1,5 +1,5 @@
 import os
-import timeit
+import time
 import fun_matriz
 import fun_lista
 
@@ -20,19 +20,15 @@ chave = int(chave)
 
 print('\n\n-Grafo:')
 if chave == 1:
-    inicio = timeit.default_timer()
     saida = fun_lista.GrafoLista(arquivo)
-    fim = timeit.default_timer()
-    if saida.num_vertices < 10:
+    if saida.num_vertices < 15:
         for item in saida.grafo:
             print('\t', item)
     else:
         print('\tDesculpe, é inviavel imprimir este grafo')
 else:
-    inicio = timeit.default_timer()
     saida = fun_matriz.GrafoMatriz(arquivo)
-    fim = timeit.default_timer()
-    if saida.num_vertices < 10:
+    if saida.num_vertices < 15:
         for item in saida.grafo:
             print('\t', item)
     else:
@@ -43,13 +39,13 @@ print('-Numero de arestas:', saida.num_arestas)
 print('-Maior grau:', saida.maior_grau[1], '| | no vertice:', saida.maior_grau[0])
 print('-Menor grau:', saida.menor_grau[1], '| | no vertice:', saida.menor_grau[0])
 print('-Grau Medio :', saida.media_grau)
-print('-Frequencia relativa:')
-for (grau, freq) in saida.frequencia:
+print('-Distribuição relativa:')
+for (grau, freq) in saida.distribuicao:
     print('\t->Grau', grau, ': ', freq)
 print('-Componentes conexas:', saida.componentes_conexas)
 for item in saida.num_conexa:
     print('\t->', item, 'vertices')
-print('-Tempo de execução de todas as funcionalidades :',  fim - inicio)
+print('-Tempo de execução de todas as funcionalidades :',  saida.tempo_total)
 print('-Tempo de execução na criação da representação :',  saida.tempo_cria_representacao)
 print('-Tempo de execução de busca largura :',  saida.tempo_largura)
 print('-Tempo de execução de busca profundidade :',  saida.tempo_profundidade)
