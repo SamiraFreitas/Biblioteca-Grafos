@@ -24,7 +24,10 @@ A biblioteca deve ler um grafo especificado através de um arquivo de texto no f
 Grafo de Colaborações em Pesquisa :
 
 O estudo  de  Grafo  de  Colaborações  em  Pesquisa, trouxe um modelo simplificado para abstrair o problema da vida real, que consiste em, artigos científicos que são produzidos por uma ou mais pessoas ́e representado pela porcentagem, ou seja, o grau do grafo representa a quantidade de pessoas que publicaram artigos juntos. Através desse algoritmo foi possível observar a distribuição de graus do grafo.
-- Grafo de Conexões da Web
+
+Grafo de Conexões da Web: 
+
+o estudo Grafo de Conexões da Web, trouxe um modelo simplificado para abstrair o problema da vida real, que consiste em utilizar o grafo para representar as conexões das redes que formam a Internet. 
 
 ## 👀 Documentação do Projeto
 
