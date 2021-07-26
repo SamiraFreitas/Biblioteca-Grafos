@@ -20,7 +20,9 @@ A biblioteca deve ler um grafo especificado através de um arquivo de texto no f
 - Busca em Grafos: Largura e Profundidade 
 - Escrever a saída em um arquivo, tendo em cada linha o vértice e seu nível na  árvore de busca.
 - Componentes conexas do grafo
-- Grafo de Colaborações em Pesquisa
+
+Grafo de Colaborações em Pesquisa 
+O estudo  de  Grafo  de  Colaborações  em  Pesquisa,trouxe um modelo simplificado para abstrair o problema da vida real, que consiste em, artigos científicos que são produzidos por uma ou mais pessoas ́e representado pela porcentagem, ou seja, o grau do grafo representa a quantidade de pessoas que publicaram artigos juntos. Através desse algoritmo foi possível observar a distribuição de graus do grafo.
 - Grafo de Conexões da Web
 
 ## 👀 Documentação do Projeto
