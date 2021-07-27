@@ -5,16 +5,17 @@ import fun_lista
 
 ch = False
 entrada = ''
+print('\n-Informe o arquivo: ')
 while not ch:
-    entrada = input('\n-Informe o nome do arquivo: ')
+    print('\t( Formato indicado: nome_do_arquivo.txt ou nome_do_arquivo.dat )')
+    entrada = input('\t arquivo: ')
     ch = os.path.isfile(entrada)
-    if not ch:
+    if not ch: # verfica se o arquivo existe
         print("\nInfelizmente não foi possivel encontrar esse arquivo, tente novamente com um nome valido")
-        espera = input('\t...aperte enter para continuar...')
-arquivo = open(entrada, 'r')
+        espera = input('\t...aperte enter para continuar...\n')
+arquivo = open(entrada, 'r') # abrir arquivo para leitura
 
-
-print('\tEscolha o tipo de representação do grafo:')
+print('\n\tEscolha o tipo de representação do grafo:')
 chave = input('\t\t(1 para lista de adjacencias  /  2 para matriz de adjacencias) -> ')
 chave = int(chave)
 
@@ -33,6 +34,7 @@ else:
             print('\t', item)
     else:
         print('\tDesculpe, é inviavel imprimir este grafo')
+arquivo.close() #fechar arquivo
 
 print('-Numero de vertices:', saida.num_vertices)
 print('-Numero de arestas:', saida.num_arestas)
