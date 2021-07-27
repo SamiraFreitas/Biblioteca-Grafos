@@ -5,13 +5,15 @@ import fun_lista
 ch = False
 entrada = ''
 print('\n-Informe o arquivo: ')
+primeira_tentativa = True
 while not ch:
+    ch = True
+    if not primeira_tentativa: # verifica se é a primeira vez que tenta entrar com o nome do arquivo
+        print("\n-Infelizmente não foi possivel encontrar esse arquivo, tente novamente com um nome valido")
     print('\t( Formato indicado: nome_do_arquivo.txt ou nome_do_arquivo.dat )')
     entrada = input('\t arquivo: ')
-    ch = os.path.isfile(entrada)
-    if not ch: # verfica se o arquivo existe
-        print("\nInfelizmente não foi possivel encontrar esse arquivo, tente novamente com um nome valido")
-        espera = input('\t...aperte enter para continuar...\n')
+    ch = os.path.isfile(entrada) # verfica se o arquivo existe
+    primeira_tentativa = False
 arquivo = open(entrada, 'r') # abrir arquivo para leitura
 
 print('\n\tEscolha o tipo de representação do grafo:')
