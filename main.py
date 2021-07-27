@@ -1,5 +1,4 @@
 import os
-import time
 import fun_matriz
 import fun_lista
 
@@ -51,4 +50,3 @@ print('-Tempo de execução de todas as funcionalidades :',  saida.tempo_total)
 print('-Tempo de execução na criação da representação :',  saida.tempo_cria_representacao)
 print('-Tempo de execução de busca largura :',  saida.tempo_largura)
 print('-Tempo de execução de busca profundidade :',  saida.tempo_profundidade)
-fim = input()
